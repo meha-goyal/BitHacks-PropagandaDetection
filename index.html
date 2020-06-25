@@ -12,28 +12,41 @@
     <h2>Propaganda Checker</h2>
   </head>
   <body>
-    <form id="input">
+    <form id="input" action="{{ url_for('index') }}" method="POST">
       <fieldset>
         <legend>Text input</legend>
         <p>
           <textarea name="propText" style="width: 100%; height: 12em;" cols="65" rows="8" id="typedText" id="typedText"></textarea>
 					<table width="100%" cellpadding="0" cellspacing="0" border="0">
         </p>
+        <input onclick="isPropaganda()" type="submit">
+        <br><br>
+        <a href="#" onclick="confirmReset(); return false" >Reset</a>
+        <br>
       </fieldset>
+      
     </form>
-    <br>
-    <td align="right" valign="top"><td style='text-align: center'><a href="#" class="mainbutton" onclick="isPropaganda(); return false">Check Text</a>
-								<div>
-             
-									<a 
-										href="#" onclick="confirmReset(); return false" >Reset</a>
-                    <br>
-								</div>
+
 <script>
 function confirmReset() {
     document.getElementById("input").reset();
 }
 </script>
-							</td></td>
+
+
+
+<br>
+<div class="result" align="center">
+    {% if result %}
+    	{% for variable, value in original_input.items() %}
+    		<b>{{ variable }}</b> : {{ value }}
+    	{% endfor %}
+		<br>
+    	<br> Is Propaganda
+   		<p style="font-size:50px">{{ result }}</p>
+    {% endif %}
+</div>
+
+
   </body>
 </html>
