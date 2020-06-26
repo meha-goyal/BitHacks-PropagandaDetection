@@ -36,6 +36,7 @@ def keyword_featurizer(text):
     return features
 
 from gensim.test.utils import get_tmpfile, common_texts
+from gensim.models import Word2Vec
 model = Word2Vec(common_texts, size=300, window=5, min_count=1, workers=4)
 # Returns word vector for word if it exists, else return None.
 def get_word_vector(word):
