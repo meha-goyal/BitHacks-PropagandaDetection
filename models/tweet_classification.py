@@ -22,12 +22,8 @@ from sklearn.metrics import precision_recall_fscore_support
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import confusion_matrix
 
-from google.colab import drive
-
-drive.mount('/content/drive/')
-
-troll_data = pd.read_csv("/content/drive/My Drive/ML!!/BitHacksProject/Twitter_Data/troll_tweets_1.csv", encoding='latin-1')
-reg_tweet_data = pd.read_csv("/content/drive/My Drive/ML!!/BitHacksProject/Twitter_Data/Extracted_Genuine_Tweets.csv")
+troll_data = pd.read_csv("/troll_tweets.csv", encoding='latin-1')
+reg_tweet_data = pd.read_csv("/real_tweets.csv")
 
 # trimming troll_data so we have an equal number of examples for genuine and troll tweets
 troll_data = troll_data.truncate(after=86459)
@@ -37,10 +33,13 @@ troll_data['Type'] = np.ones(86460, dtype = int).tolist()
 # 0 == genuine tweet
 reg_tweet_data['Type'] = np.zeros(86460, dtype = int).tolist()
 
+# removing unn columns
 troll_data = troll_data.drop(['external_author_id', 'region',	'language', 'publish_date',	'harvested_date',	'following', 'followers',	'updates', 'post_type', 'account_type',	'new_june_2018',	'retweet',	'account_category'], 1)
 reg_tweet_data = reg_tweet_data.drop(['Party'], 1)
 
+# changing column names in reg_tweet_data so that the columns will match
 reg_tweet_data.columns = ['author', 'content', 'Type']
+# merging the dfs to create our entire body of data
 total_data = pd.concat([reg_tweet_data, troll_data])
 
 from sklearn.model_selection import train_test_split
@@ -168,11 +167,3 @@ combined_train_X = combine_features(train_X_list)
 combined_val_X = combine_features(val_X_list)
 
 model_2 = train_and_evaluate(combined_train_X, train_y, combined_val_X, val_y)
-
-#import pickle
-
-
-#pickle_name = "/content/drive/My Drive/ML!!/BitHacksProject/tweet_class_model.pkl"  
-
-#with open(pickle_name, 'wb') as file:  
-    #pickle.dump(model_2, file)
