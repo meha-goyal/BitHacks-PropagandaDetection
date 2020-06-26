@@ -61,9 +61,9 @@ def dict_to_features(features_dict):
             return X
         
 from sklearn.feature_extraction.text import CountVectorizer
-vectorizer = CountVectorizer(max_features=2000)
 
 def featurize_data(tweet_stuff):
+    vectorizer = CountVectorizer(max_features=2000)
     keyword_X = dict_to_features(keyword_featurizer(tweet_stuff))
     bow_X = vectorizer.transform(tweet_stuff).todense()
     glove_X = glove_transform(tweet_stuff)
