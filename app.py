@@ -25,13 +25,13 @@ app = flask.Flask(__name__, template_folder='templates')
 def get_normalized_count(text, phrase):
     return math.log(1 + text.count(phrase.lower()))
 
-def keyword_featurizer(text):
+def keyword_featurizer(tweet):
     features = {}
     
     keywords = ['clinton', 'soros', 'liberal', 'antifa', 'mainstream', 'protesters', 'hillary', 'God', 'wiretap', 'riot', 'obama', 'troll', 'leftist']
     
     for keyword in keywords:
-      features[keyword + ' keyword'] = get_normalized_count(text, keyword)
+      features[keyword + ' keyword'] = get_normalized_count(tweet, keyword)
     
     return features
 
