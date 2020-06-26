@@ -3,4 +3,3 @@ pandas
 gunicorn
 xgboost
 scikit-learn==0.22.1
-torchtext
