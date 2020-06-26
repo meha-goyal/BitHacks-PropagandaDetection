@@ -25,7 +25,7 @@ def main():
         # Just render the initial form, to get input
         return(flask.render_template('index.html'))
     
-    elif flask.request.method == 'POST':
+    else:
         # Extract the input
         tweet = flask.request.form['tweet']
         # Make DataFrame for model
