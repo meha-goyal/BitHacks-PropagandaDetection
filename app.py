@@ -85,7 +85,7 @@ def main():
           X = np.concatenate(X_list, axis=1)
           return X
 
-        curr_X = featurize_data([input_variable])
+        curr_X = featurize_data(input_variable)
         
         # Get the model's prediction
         prediction = model.predict([input_variable])[0]
