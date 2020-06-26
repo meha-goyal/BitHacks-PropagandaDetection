@@ -21,25 +21,14 @@ app = flask.Flask(__name__, template_folder='templates')
 
 # Set up the main route
 @app.route('/', methods=['GET', 'POST'])
-
-def get_normalized_count(text, phrase):
     
-    if id is not None:
-        return math.log(1 + text.count(phrase.lower()))
-
-    if name is not None:
-        return math.log(1 + text.count(phrase.lower()))
-
-    return None
-    
-
 def keyword_featurizer(text):
     features = {}
     
     keywords = ['clinton', 'soros', 'liberal', 'antifa', 'mainstream', 'protesters', 'hillary', 'God', 'wiretap', 'riot', 'obama', 'troll', 'leftist']
     
     for phrase in keywords:
-      features[keyword + ' keyword'] = get_normalized_count(text, phrase)
+      features[keyword + ' keyword'] = math.log(1 + text.count(phrase.lower()))
     
     return features
 
