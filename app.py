@@ -13,7 +13,7 @@ from torchtext.vocab import GloVe
 import numpy as np
 
 # Use pickle to load in the pre-trained model
-with open(f'model/tweet_class_model.pkl', 'rb') as f:
+with open(f'model/tweet_class_model.pkl_1', 'rb') as f:
   model = pickle.load(f)
 
 # Initialise the Flask app
@@ -35,24 +35,23 @@ def keyword_featurizer(text):
     
     return features
 
-VEC_SIZE = 300
-glove = GloVe(name='6B', dim=VEC_SIZE)
-
+from gensim.test.utils import get_tmpfile, common_texts
+model = Word2Vec(common_texts, size=300, window=5, min_count=1, workers=4)
 # Returns word vector for word if it exists, else return None.
 def get_word_vector(word):
     try:
-      return glove.vectors[glove.stoi[word.lower()]].numpy()
+      return model[word]
     except KeyError:
       return None
 
 def glove_transform(tweet_content):
-    X = np.zeros((len(tweet_content), VEC_SIZE))
+    X = np.zeros((len(tweet_content), 300))
     for i, tweet_content in enumerate(tweet_content):
         found_words = 0.0
         tweet_content = tweet_content.strip()
         for word in tweet_content.split(): 
             vec = get_word_vector(word)
-            if vec is not None:
+            if vec is not None:               
                 found_words += 1
                 X[i] += vec
 
