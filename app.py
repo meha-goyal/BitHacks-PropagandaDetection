@@ -9,7 +9,6 @@ Original file is located at
 import pickle
 import pandas as pd
 import math
-from torchtext.vocab import GloVe
 import numpy as np
 
 # Use pickle to load in the pre-trained model
