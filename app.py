@@ -85,10 +85,10 @@ def main():
           X = np.concatenate(X_list, axis=1)
           return X
 
-        curr_X = featurize_data([input_variable])
+        #curr_X = featurize_data([input_variable])
         
         # Get the model's prediction
-        prediction = model.predict(curr_X)[0]
+        prediction = model.predict([input_variable])[0]
     
         # Render the form again, but add in the prediction and remind user
         # of the values they input before
