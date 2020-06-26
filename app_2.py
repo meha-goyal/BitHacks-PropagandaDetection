@@ -63,6 +63,31 @@ def dict_to_features(features_dict):
 from sklearn.feature_extraction.text import CountVectorizer
 
 def featurize_data(tweet_stuff):
+    
+    troll_data = pd.read_csv("troll_tweets.csv", encoding='latin-1')
+    reg_tweet_data = pd.read_csv("real_tweets.csv")
+
+    # trimming troll_data so we have an equal number of examples for genuine and troll tweets
+    troll_data = troll_data.truncate(after=86459)
+
+    # 1 == troll tweet
+    troll_data['Type'] = np.ones(86460, dtype = int).tolist()
+    # 0 == genuine tweet
+    reg_tweet_data['Type'] = np.zeros(86460, dtype = int).tolist()
+
+    troll_data = troll_data.drop(['external_author_id', 'region', 'language', 'publish_date', 'harvested_date', 'following', 'followers', 'updates', 'post_type', 'account_type', 'new_june_2018',  'retweet',  'account_category'], 1)
+    reg_tweet_data = reg_tweet_data.drop(['Party'], 1)
+
+    reg_tweet_data.columns = ['author', 'content', 'Type']
+    total_data = pd.concat([reg_tweet_data, troll_data])
+
+    from sklearn.model_selection import train_test_split
+    X = total_data.drop(['Type'], 1)
+    y = total_data['Type']
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.33, random_state=42)
+
+    vectorizer.fit(X_train[['content']].values.ravel())
+    
     vectorizer = CountVectorizer(max_features=2000)
     keyword_X = dict_to_features(keyword_featurizer(tweet_stuff))
     bow_X = vectorizer.transform(tweet_stuff).todense()
