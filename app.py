@@ -77,10 +77,10 @@ def main():
             X = np.array(list(features_dict.values())).astype('float')
             X = X[np.newaxis, :]
             return X
-        def featurize_data(text):
-          keyword_X = dict_to_features(keyword_featurizer(text))
-          bow_X = vectorizer.transform(text).todense()
-          glove_X = glove_transform(text)
+        def featurize_data(tweet):
+          keyword_X = dict_to_features(keyword_featurizer(tweet))
+          bow_X = vectorizer.transform(tweet).todense()
+          glove_X = glove_transform(tweet)
           X_list = [keyword_X, bow_X, glove_X]
           X = np.concatenate(X_list, axis=1)
           return X
