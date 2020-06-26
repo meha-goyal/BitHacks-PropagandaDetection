@@ -27,7 +27,7 @@ def main():
     
     else:
         # Extract the input
-        tweet = flask.request.form['tweet']
+        tweet = flask.request.form.get("tweet", False)
         # Make DataFrame for model
         input_variable = pd.DataFrame([[tweet]],
                                        columns=['tweet'],
