@@ -1,1 +1,56 @@
+<!DOCTYPE html>
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>BitHacks</title>
+    <meta charset = "UTF-8" />
+    <meta name="viewport" content="width=device-width">
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <script src="script.js"></script>
+    <h1><center>Think Critically</center></h1>
+    <center><a href="chatbot.html">Chat Bot</a></center>
+    <h2>Propaganda Checker</h2>
+  </head>
+  <body>
+    <form id="input" action="{{ url_for('index') }}" method="POST">
+      <fieldset>
+        <legend>Text input</legend>
+        <p>
+          <textarea name="propText" style="width: 100%; height: 12em;" cols="65" rows="8" id="typedText" id="typedText"></textarea>
+					<table width="100%" cellpadding="0" cellspacing="0" border="0">
+        </p>
+        <input onclick="isPropaganda()" type="submit">
+        <br><br>
+        <a href="#" onclick="confirmReset(); return false" >Reset</a>
+        <br>
+      </fieldset>
+      
+    </form>
 
+<script>
+function confirmReset() {
+    document.getElementById("input").reset();
+}
+function isPropaganda(){
+  var input = document.getElementById("typedText").value;
+  return input
+}
+</script>
+
+
+
+<br>
+<div class="result" align="center">
+    {% if result %}
+    	{% for variable, value in original_input.items() %}
+    		<b>{{ variable }}</b> : {{ value }}
+    	{% endfor %}
+		<br>
+    	<br> Is Propaganda
+   		<p style="font-size:50px">{{ result }}</p>
+    {% endif %}
+</div>
+
+
+</body>
+</html>
