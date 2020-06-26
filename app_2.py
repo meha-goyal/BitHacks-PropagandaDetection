@@ -18,9 +18,6 @@ with open(f'model/tweet_class_model_1.pkl', 'rb') as f:
 
 # Initialise the Flask app
 app = flask.Flask(__name__, template_folder='templates')
-
-# Set up the main route
-@app.route('/', methods=['GET', 'POST'])
     
 def keyword_featurizer(text):
     features = {}
@@ -69,6 +66,9 @@ def featurize_data(tweet_stuff):
     X_list = [keyword_X, bow_X, glove_X]
     X = np.concatenate(X_list, axis=1)
     return X
+
+# Set up the main route
+@app.route('/', methods=['GET', 'POST'])
 
 def main():
     if flask.request.method == 'GET':
