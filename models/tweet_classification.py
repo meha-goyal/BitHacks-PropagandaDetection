@@ -22,8 +22,8 @@ from sklearn.metrics import precision_recall_fscore_support
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import confusion_matrix
 
-troll_data = pd.read_csv("/troll_tweets.csv", encoding='latin-1')
-reg_tweet_data = pd.read_csv("/real_tweets.csv")
+troll_data = pd.read_csv("troll_tweets.csv", encoding='latin-1')
+reg_tweet_data = pd.read_csv("real_tweets.csv")
 
 # trimming troll_data so we have an equal number of examples for genuine and troll tweets
 troll_data = troll_data.truncate(after=86459)
