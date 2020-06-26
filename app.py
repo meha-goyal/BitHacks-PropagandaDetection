@@ -12,7 +12,7 @@ import math
 import numpy as np
 
 # Use pickle to load in the pre-trained model
-with open(f'model/tweet_class_model.pkl_1', 'rb') as f:
+with open(f'model/tweet_class_model_1.pkl', 'rb') as f:
   model = pickle.load(f)
 
 # Initialise the Flask app
