@@ -26,18 +26,6 @@
       
     </form>
 
-<script>
-function confirmReset() {
-    document.getElementById("input").reset();
-}
-function isPropaganda(){
-  var input = document.getElementById("input").value;
-  return input
-}
-</script>
-
-
-
 <br>
 <div class="result" align="center">
     {% if result %}
@@ -50,6 +38,15 @@ function isPropaganda(){
     {% endif %}
 </div>
 
-
+<script>
+function confirmReset() {
+    document.getElementById("input").reset();
+}
+function isPropaganda(){
+  var input = document.getElementById("input").value;
+  return input
+}
+</script>
+	  
 </body>
 </html>
