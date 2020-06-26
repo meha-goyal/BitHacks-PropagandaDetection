@@ -58,6 +58,18 @@ def glove_transform(tweet_content):
             
     return X
 
+def dict_to_features(features_dict):
+            X = np.array(list(features_dict.values())).astype('float')
+            X = X[np.newaxis, :]
+            return X
+def featurize_data(tweet_stuff):
+    keyword_X = dict_to_features(keyword_featurizer(tweet_stuff))
+    bow_X = vectorizer.transform(tweet_stuff).todense()
+    glove_X = glove_transform(tweet_stuff)
+    X_list = [keyword_X, bow_X, glove_X]
+    X = np.concatenate(X_list, axis=1)
+    return X
+
 def main():
     if flask.request.method == 'GET':
         # Just render the initial form, to get input
@@ -69,18 +81,7 @@ def main():
         # Make DataFrame for model
         input_variable = tweet
 
-        
-        def dict_to_features(features_dict):
-            X = np.array(list(features_dict.values())).astype('float')
-            X = X[np.newaxis, :]
-            return X
-        def featurize_data(tweet_stuff):
-          keyword_X = dict_to_features(keyword_featurizer(tweet_stuff))
-          bow_X = vectorizer.transform(tweet_stuff).todense()
-          glove_X = glove_transform(tweet_stuff)
-          X_list = [keyword_X, bow_X, glove_X]
-          X = np.concatenate(X_list, axis=1)
-          return X
+        # THIS IS WHERE THE METHODS WERE
 
         curr_X = featurize_data([input_variable])
         
