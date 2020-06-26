@@ -10,12 +10,9 @@ Original file is located at
 import flask
 import pickle
 import pandas as pd
-from google.colab import drive
-
-drive.mount('/content/drive/')
 
 # Use pickle to load in the pre-trained model
-with open(f'/content/drive/My Drive/BitHacksProject/tweet_class_model.pkl', 'rb') as f:
+with open(f'tweet_class_model.pkl', 'rb') as f:
   model = pickle.load(f)
 
 # Initialise the Flask app
