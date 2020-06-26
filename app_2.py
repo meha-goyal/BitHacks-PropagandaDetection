@@ -14,7 +14,7 @@ import numpy as np
 
 # Use pickle to load in the pre-trained model
 with open(f'model/tweet_class_model_1.pkl', 'rb') as f:
-  model = pickle.load(f)
+  model_3 = pickle.load(f)
 
 # Initialise the Flask app
 app = flask.Flask(__name__, template_folder='templates')
@@ -116,7 +116,7 @@ def main():
         curr_X = featurize_data([input_variable])
         
         # Get the model's prediction
-        prediction = model.predict([input_variable])[0]
+        prediction = model_3.predict(curr_X)[0]
     
         # Render the form again, but add in the prediction and remind user
         # of the values they input before
