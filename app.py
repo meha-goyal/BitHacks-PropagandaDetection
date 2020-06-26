@@ -7,14 +7,11 @@ Original file is located at
     https://colab.research.google.com/drive/1K7tbCW4C5C_C4fkIiq_jra0HNNAYClEz
 """
 
-import flask
 import pickle
 import pandas as pd
 import math
 from torchtext.vocab import GloVe
 import numpy as np
-from sklearn.linear_model import LogisticRegression
-pip install torchtext
 
 # Use pickle to load in the pre-trained model
 with open(f'model/tweet_class_model.pkl', 'rb') as f:
