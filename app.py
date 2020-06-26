@@ -39,12 +39,12 @@ def main():
     
         # Render the form again, but add in the prediction and remind user
         # of the values they input before
-        return flask.render_template('index.html',
+        return flask.render_template('index.html' ''',
                                      original_input={'Tweet': tweet},
                                      result=prediction,
-                                     )
+                                     ''')
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug = True)
 
 
