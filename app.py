@@ -65,7 +65,7 @@ def main():
     
     else:
         # Extract the input
-        tweet = flask.request.form.get("tweet", False)
+        tweet = flask.request.form.get("propText", False)
         # Make DataFrame for model
         input_variable = pd.DataFrame([[tweet]],
                                        columns=['tweet'],
@@ -85,7 +85,7 @@ def main():
           X = np.concatenate(X_list, axis=1)
           return X
 
-        curr_X = featurize_data(input_variable)
+        curr_X = featurize_data([input_variable])
         
         # Get the model's prediction
         prediction = model.predict([input_variable])[0]
