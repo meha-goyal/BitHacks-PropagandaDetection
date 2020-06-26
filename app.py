@@ -44,7 +44,7 @@ def main():
                                      result=prediction,
                                      )
 
-if __name__ == '__index__':
+if __name__ == '__main__':
     app.run()
 
 
