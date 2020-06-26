@@ -67,10 +67,7 @@ def main():
         # Extract the input
         tweet = flask.request.form.get("propText", False)
         # Make DataFrame for model
-        input_variable = pd.DataFrame([[tweet]],
-                                       columns=['tweet'],
-                                       dtype=str,
-                                       index=['input'])
+        input_variable = tweet
 
         
         def dict_to_features(features_dict):
