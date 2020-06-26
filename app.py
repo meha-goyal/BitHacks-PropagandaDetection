@@ -11,6 +11,9 @@ import flask
 import pickle
 import pandas as pd
 import math
+from torchtext.vocab import GloVe
+import numpy as np
+from sklearn.linear_model import LogisticRegression
 
 # Use pickle to load in the pre-trained model
 with open(f'model/tweet_class_model.pkl', 'rb') as f:
