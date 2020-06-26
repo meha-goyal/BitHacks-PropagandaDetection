@@ -25,7 +25,7 @@ def keyword_featurizer(text):
     keywords = ['clinton', 'soros', 'liberal', 'antifa', 'mainstream', 'protesters', 'hillary', 'God', 'wiretap', 'riot', 'obama', 'troll', 'leftist']
     
     for phrase in keywords:
-      features[keyword + ' keyword'] = math.log(1 + text.count(phrase.lower()))
+      features[phrase + ' keyword'] = math.log(1 + text.count(phrase.lower()))
     
     return features
 
